@@ -1,23 +1,52 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
+import PadraoLayout from "../layouts/PadraoLayout";
+import AutenticarLayout from "../layouts/AutenticarLayout";
+import Login from "../views/Login";
+import CadastrarUsuario from "../views/CadastrarUsuario";
 
 Vue.use(VueRouter)
 
   const routes = [
   {
     path: '/',
-    name: 'Home',
-    component: Home
+    name: 'Padrao',
+    redirect: '/home',
+    component: PadraoLayout,
+    children: [
+      {
+       path: 'home',
+       nome: 'home',
+        component: Home
+      }
+    ]
   },
   {
-    path: '/about',
-    name: 'About',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
-  }
+    path: '/autenticar',
+    name: '',
+    component: AutenticarLayout,
+    children: [
+      {
+        path: 'login',
+        name: 'login',
+        component: Login
+      },
+      {
+        path: 'cadastrar',
+        name: 'cadastrar',
+        component: CadastrarUsuario
+      }
+    ]
+  },
+    {
+      path: '/login',
+      redirect: '/autenticar/login'
+    },
+    {
+      path: '/cadastrar',
+      redirect: '/autenticar/cadastrar'
+    }
 ]
 
 const router = new VueRouter({
