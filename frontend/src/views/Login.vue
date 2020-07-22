@@ -1,16 +1,16 @@
 <template>
     <div class="form-wrapper">
-        <h3>Criar conta para o MyNotes</h3>
+        <h3>MyNotes</h3>
         <form @submit.prevent="login" action="">
             <div v-if="errors" class="errors">
                 <p v-for="(error, field) in errors" :key="field">
                     {{error[0]}}
                 </p>
             </div>
-            <input type="text" v-model="form.username" placeholder="Your username"><br>
-            <input type="password" v-model="form.password" placeholder="Your password"><br>
-            <button>Login</button>
-            <router-link to="/register" class="link">Click here to register</router-link>
+            <input type="text" v-model="form.usuario" placeholder="Seu usuario"><br>
+            <input type="password" v-model="form.senha" placeholder="Sua senha"><br>
+            <button>Logar</button>
+            <router-link to="/cadastrar" class="link">Cadastrar uma nova conta</router-link>
         </form>
     </div>
 </template>
@@ -24,12 +24,12 @@
                     usuario: '',
                     senha: ''
                 },
-                errors: {}
+                errors: null
             }
         },
         methods: {
             login(){
-
+                console.log("Login", this.form);
             }
         }
     }

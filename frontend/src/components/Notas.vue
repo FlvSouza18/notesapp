@@ -41,7 +41,7 @@
             deletarNota(nota){
                this.notas.splice(this.notas.indexOf(nota), 1);
             },
-            notaAtualizar(nota){
+            notaAtualizar(){
 
             }
         }
